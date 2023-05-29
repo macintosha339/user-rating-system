@@ -1,11 +1,9 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import User from "../../interfaces/user";
 import { ListItem, ButtonGroup, Button } from "@mui/material";
 import AvatarUI from "../../ui/Avatar";
 import ItemText from "../../ui/ItemText";
-import { incrementRating, decrementRating } from "../../store/ratedUsersSlice";
-import { removeUser } from "../../store/usersSlice";
+import { useRateUser } from "../../hooks/useRateUser";
 
 interface ItemsListProps {
   users: User[];
@@ -16,17 +14,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({
   users,
   itemClassName,
 }) => {
-    const dispatch = useDispatch();
-
-  const onIncrementRateUser = (user: User): void => {
-    dispatch(incrementRating(user));
-    dispatch(removeUser(user.id));
-  };
-
-  const onDecrementRateUser = (user: User): void => {
-    dispatch(decrementRating(user));
-    dispatch(removeUser(user.id));
-  };
+    const { incrementRatingUser, decrementRatingUser } = useRateUser();
   return (
     <>
       {users.map((user: User) => (
@@ -45,8 +33,8 @@ export const ItemsList: React.FC<ItemsListProps> = ({
             />
           </ListItem>
           <ButtonGroup>
-            <Button onClick={() => onIncrementRateUser(user)}>+</Button>
-            <Button onClick={() => onDecrementRateUser(user)}>-</Button>
+            <Button onClick={() => incrementRatingUser(user)}>+</Button>
+            <Button onClick={() => decrementRatingUser(user)}>-</Button>
           </ButtonGroup>
         </>
       ))}

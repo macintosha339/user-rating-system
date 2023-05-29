@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import User from "../interfaces/user";
 import ratedUsersSlice from "./ratedUsersSlice";
-import usersSlice from "./usersSlice";
+import { usersSlice } from "../modules/UserList";
 
 interface UsersState {
   users: User[];
@@ -16,7 +16,7 @@ export interface RootState {
 
 export default configureStore({
   reducer: {
-    users: usersSlice,
+    users: usersSlice.reducer,
     ratedUsers: ratedUsersSlice
   },
 });
