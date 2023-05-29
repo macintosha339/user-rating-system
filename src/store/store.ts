@@ -1,5 +1,7 @@
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import User from "../interfaces/user";
+import ratedUsersSlice from "./ratedUsersSlice";
+import usersSlice from "./usersSlice";
 
 interface UsersState {
   users: User[];
@@ -10,24 +12,11 @@ export interface RootState {
     users: UsersState;
 }
 
-const initialState: UsersState = {
-  users: [],
-};
 
-const usersSlice = createSlice({
-  name: "users",
-  initialState,
-  reducers: {
-    setUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload;
-    },
-  },
-});
-
-export const { setUsers } = usersSlice.actions;
 
 export default configureStore({
   reducer: {
-    users: usersSlice.reducer,
+    users: usersSlice,
+    ratedUsers: ratedUsersSlice
   },
 });

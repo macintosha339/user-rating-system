@@ -1,0 +1,1 @@
+export { RatedUserList } from './components/RatedUserList/RatedUserList'; 

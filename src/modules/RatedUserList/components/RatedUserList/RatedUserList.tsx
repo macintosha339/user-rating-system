@@ -1,6 +1,6 @@
 import React from "react";
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
-import RatingButtons from "./RatingButtons";
+import RatingButtons from "../../../../components/RatingButtons/RatingButtons";
 
 interface RatedUserListProps {
   ratedUsers: RatedUser[];
@@ -12,7 +12,7 @@ interface RatedUser {
   rating: number;
 }
 
-const RatedUserList: React.FC<RatedUserListProps> = ({ ratedUsers }) => {
+export const RatedUserList: React.FC<RatedUserListProps> = ({ ratedUsers }) => {
   return (
     <div>
       <Typography variant="h2">Rated User List</Typography>
@@ -31,5 +31,3 @@ const RatedUserList: React.FC<RatedUserListProps> = ({ ratedUsers }) => {
     </div>
   );
 };
-
-export default RatedUserList;

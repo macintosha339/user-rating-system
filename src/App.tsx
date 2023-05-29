@@ -1,6 +1,6 @@
 import React from 'react';
-import UserList  from './components/UserList';
-import RatedUserList from './components/RatedUserList';
+import { UserList } from './modules/UserList';
+import { RatedUserList } from './modules/RatedUserList';
 import './App.css';
 
 function App() {

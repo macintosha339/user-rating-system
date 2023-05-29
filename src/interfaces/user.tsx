@@ -36,6 +36,7 @@ interface User {
       payment_method?: string;
       term?: string;
     };
+    rating?: number;
   }
 
 export default User;
