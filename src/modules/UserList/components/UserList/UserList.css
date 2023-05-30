@@ -28,9 +28,3 @@
     background-color: #f0f0f0;
     cursor: pointer;
   }
-
-  .user-list__buttons {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-  }

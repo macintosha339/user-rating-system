@@ -9,32 +9,27 @@ const initialState: UsersState = {
   users: [],
 };
 
+// Создание slice для хранения данных о пользователях
 export const usersSlice = createSlice({
-  name: "users",
-  initialState,
+  name: "users", // Название slice
+  initialState, // Исходное состояние
   reducers: {
-    setUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload.map((user) => ({
-        ...user,
-        rating: 0, // Добавляем поле rating со значением 0
-      }));
-    },
+    // Обновление списка пользователей
     updateUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload.map((user) => ({
-        ...user,
-        rating: 0,
-      }));
+      // Обновляем список пользователей, присваивая каждому пользователю рейтинг 0
+      state.users = action.payload.map((user) => ({ ...user, rating: 0 }));
     },
+    // Загрузка дополнительных пользователей
     loadMoreUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = [...state.users, ...action.payload.map((user) => ({
-        ...user,
-        rating: 0,
-      }))];
+      // Добавляем дополнительных пользователей в список, присваивая каждому рейтинг 0
+      state.users.push(...action.payload.map((user) => ({ ...user, rating: 0 })));
     },
+    // Удаление пользователя
     removeUser: (state, action: PayloadAction<number>) => {
+      // Удаляем пользователя из списка по его id
       state.users = state.users.filter((user) => user.id !== action.payload);
     },
   },
 });
 
-export const { setUsers, updateUsers, loadMoreUsers, removeUser } = usersSlice.actions;
+export const { updateUsers, loadMoreUsers, removeUser } = usersSlice.actions;

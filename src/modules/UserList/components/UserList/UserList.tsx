@@ -1,32 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setUsers, updateUsers, loadMoreUsers } from "../../store/usersSlice";
-import { List, Button } from "@mui/material";
+import { updateUsers } from "../../store/usersSlice";
+import { List } from "@mui/material";
+import { Buttons } from "../Buttons/Buttons";
 import { RootState } from "../../../../store/store";
 import User from "../../../../interfaces/user";
 import { ItemsList } from "../../../../components/ItemsList/ItemsList";
 import Title from "../../../../ui/Title";
 import { fetchUsers } from "../../api/usersApi";
-import { useAction } from "../../hooks/useAction";
-import { NEXT_PAGE, UPDATE_LIST, USER_LIST, ERROR_FETCH } from "../../constants";
+import { USER_LIST, ERROR_FETCH } from "../../constants";
 import "./UserList.css";
 
 export const UserList: React.FC = () => {
   const users: User[] = useSelector((state: RootState) => state.users.users);
-  const handleRefresh = useAction({
-    action: updateUsers
-  });
-
-  const handleLoadMoreUsers = useAction({
-    action: loadMoreUsers
-  });
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getUsers = async () => {
       try {
         const data = await fetchUsers();
-        dispatch(setUsers(data));
+        dispatch(updateUsers(data));
       } catch (error) {
         console.log(ERROR_FETCH, error);
       }
@@ -43,14 +36,7 @@ export const UserList: React.FC = () => {
           users={users}
           itemClassName="user-list__item"
         />
-        <div className="user-list__buttons">
-          <Button variant="contained" color='primary' onClick={handleRefresh}>
-            {UPDATE_LIST}
-          </Button>
-          <Button variant="contained" color='primary' onClick={handleLoadMoreUsers}>
-            {NEXT_PAGE}
-          </Button>
-        </div>
+        <Buttons />
       </List>
     </div>
   );

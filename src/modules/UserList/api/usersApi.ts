@@ -1,13 +1,14 @@
 import axios from "axios";
+import { ERROR_FETCH, URL_USERS } from "../constants";
 
 export const fetchUsers = async () => {
   try {
     const response = await axios.get(
-      "https://random-data-api.com/api/users/random_user?size=3"
+      URL_USERS
     );
     return response.data;
   } catch (error) {
-    console.log("Error fetching users:", error);
+    console.log(ERROR_FETCH, error);
     throw error;
   }
 };

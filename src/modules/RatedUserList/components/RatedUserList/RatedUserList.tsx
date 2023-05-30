@@ -5,6 +5,7 @@ import User from "../../../../interfaces/user";
 import { RootState } from "../../../../store/store";
 import { ItemsList } from "../../../../components/ItemsList/ItemsList";
 import Title from "../../../../ui/Title";
+import { POSITIVE_USERS, NEGATIVE_USERS } from "../../constants";
 import "./RatedUserList.css";
 
 interface RatedUsersState {
@@ -23,7 +24,7 @@ export const RatedUserList: React.FC = () => {
   return (
     <div className="rated-user-list">
       <div className="rated-user-list__positive-list">
-        <Title level="h2" text="Positive Users" />
+        <Title level="h2" text={POSITIVE_USERS} />
         <List>
           <ItemsList
             showRating={true}
@@ -35,7 +36,7 @@ export const RatedUserList: React.FC = () => {
       </div>
       <Divider orientation="vertical" />
       <div className="rated-user-list__negative-list">
-        <Title level="h2" text="Negative Users" />
+        <Title level="h2" text={NEGATIVE_USERS} />
         <List>
           <ItemsList
             showRating={true}
