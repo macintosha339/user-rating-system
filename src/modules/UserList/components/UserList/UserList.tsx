@@ -18,8 +18,17 @@ export const UserList: React.FC = () => {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const data = await fetchUsers();
-        dispatch(updateUsers(data));
+        // Получение сохраненного состояния из localStorage
+        const appState = localStorage.getItem("appState");
+        if (appState) {
+          const parsedState = JSON.parse(appState);
+          if (parsedState.users && parsedState.users.users.length > 0) {
+            dispatch(updateUsers(parsedState.users.users));
+          }
+        } else {
+          const data = await fetchUsers();
+          dispatch(updateUsers(data));
+        }
       } catch (error) {
         console.log(ERROR_FETCH, error);
       }
