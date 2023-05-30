@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  setUsers, loadMoreUsers
-} from "../../../../store/usersSlice";
+import { setUsers, updateUsers, loadMoreUsers } from "../../store/usersSlice";
 import { List, Button } from "@mui/material";
 import { RootState } from "../../../../store/store";
 import User from "../../../../interfaces/user";
@@ -16,7 +14,7 @@ import "./UserList.css";
 export const UserList: React.FC = () => {
   const users: User[] = useSelector((state: RootState) => state.users.users);
   const handleRefresh = useAction({
-    action: setUsers
+    action: updateUsers
   });
 
   const handleLoadMoreUsers = useAction({
@@ -40,7 +38,7 @@ export const UserList: React.FC = () => {
   return (
     <div className="user-list">
       <Title className="user-list__title" level="h2" text={USER_LIST} />
-      <List>
+      <List className="user-list__container">
         <ItemsList
           users={users}
           itemClassName="user-list__item"

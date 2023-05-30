@@ -5,6 +5,7 @@ import User from "../../../../interfaces/user";
 import { RootState } from "../../../../store/store";
 import { ItemsList } from "../../../../components/ItemsList/ItemsList";
 import Title from "../../../../ui/Title";
+import "./RatedUserList.css";
 
 interface RatedUsersState {
   positiveRatedUsers: User[];
@@ -20,16 +21,30 @@ export const RatedUserList: React.FC = () => {
   const negativeUsers = ratedUsers.negativeRatedUsers;
 
   return (
-    <div>
-      <Title level="h2" text="Positive Users" />
-      <List>
-        <ItemsList showRating={true} users={positiveUsers} itemClassName="rated-user-list__item" />
-      </List>
-      <Divider />
-      <Title level="h2" text="Negative Users" />
-      <List>
-        <ItemsList showRating={true} users={negativeUsers} itemClassName="rated-user-list__item" />
-      </List>
+    <div className="rated-user-list">
+      <div className="rated-user-list__positive-list">
+        <Title level="h2" text="Positive Users" />
+        <List>
+          <ItemsList
+            showRating={true}
+            showDeleteBtn={true}
+            users={positiveUsers}
+            itemClassName="rated-user-list__item"
+          />
+        </List>
+      </div>
+      <Divider orientation="vertical" />
+      <div className="rated-user-list__negative-list">
+        <Title level="h2" text="Negative Users" />
+        <List>
+          <ItemsList
+            showRating={true}
+            showDeleteBtn={true}
+            users={negativeUsers}
+            itemClassName="rated-user-list__item"
+          />
+        </List>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { removeUser } from "../store/usersSlice";
-import { incrementRating, decrementRating } from "../store/ratedUsersSlice";
+import { removeUser } from "../modules/UserList/store/usersSlice";
+import { incrementRating, decrementRating } from "../modules/RatedUserList/store/ratedUsersSlice";
 import User from "../interfaces/user";
 
 export const useRateUser = () => {

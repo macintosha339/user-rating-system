@@ -20,10 +20,16 @@ export const usersSlice = createSlice({
       }));
     },
     updateUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload;
+      state.users = action.payload.map((user) => ({
+        ...user,
+        rating: 0,
+      }));
     },
     loadMoreUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = [...state.users, ...action.payload];
+      state.users = [...state.users, ...action.payload.map((user) => ({
+        ...user,
+        rating: 0,
+      }))];
     },
     removeUser: (state, action: PayloadAction<number>) => {
       state.users = state.users.filter((user) => user.id !== action.payload);

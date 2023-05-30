@@ -82,7 +82,22 @@ export const ratedUsersSlice = createSlice({
         }
       }
     },
+    removeUser: (state, action: PayloadAction<Number>) => {
+      const removedUser = state.positiveRatedUsers.find(
+        (user) => user.id === action.payload
+      );
+
+      if (removedUser) {
+        state.positiveRatedUsers = state.positiveRatedUsers.filter(
+          (user) => user.id !== action.payload
+        );
+      } else {
+        state.negativeRatedUsers = state.negativeRatedUsers.filter(
+          (user) => user.id !== action.payload
+        );
+      }
+    },
   },
 });
 
-export const { incrementRating, decrementRating } = ratedUsersSlice.actions;
+export const { incrementRating, decrementRating, removeUser } = ratedUsersSlice.actions;
