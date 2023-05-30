@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import User from "../interfaces/user";
-import ratedUsersSlice from "./ratedUsersSlice";
+import { ratedUsersSlice } from "../modules/RatedUserList";
+
 import { usersSlice } from "../modules/UserList";
 
 interface UsersState {
@@ -10,6 +11,10 @@ interface UsersState {
 // Определяем интерфейс для корневого состояния
 export interface RootState {
     users: UsersState;
+    ratedUsers: {
+      positiveRatedUsers: User[],
+      negativeRatedUsers: User[]
+    }
 }
 
 
@@ -17,6 +22,6 @@ export interface RootState {
 export default configureStore({
   reducer: {
     users: usersSlice.reducer,
-    ratedUsers: ratedUsersSlice
+    ratedUsers: ratedUsersSlice.reducer
   },
 });

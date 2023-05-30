@@ -8,11 +8,13 @@ import { useRateUser } from "../../hooks/useRateUser";
 interface ItemsListProps {
   users: User[];
   itemClassName: string;
+  showRating?: boolean;
 }
 
 export const ItemsList: React.FC<ItemsListProps> = ({
   users,
   itemClassName,
+  showRating
 }) => {
     const { incrementRatingUser, decrementRatingUser } = useRateUser();
   return (
@@ -31,10 +33,15 @@ export const ItemsList: React.FC<ItemsListProps> = ({
               username={user.username}
               country={user.address.country}
             />
+            {showRating && <span>Rating: {user.rating}</span>}
           </ListItem>
           <ButtonGroup>
-            <Button onClick={() => incrementRatingUser(user)}>+</Button>
-            <Button onClick={() => decrementRatingUser(user)}>-</Button>
+            <Button onClick={() => {
+              if(user.rating < 5) incrementRatingUser(user)
+            }}>+</Button>
+            <Button onClick={() => {
+              if(user.rating > -5) decrementRatingUser(user)
+            }}>-</Button>
           </ButtonGroup>
         </>
       ))}

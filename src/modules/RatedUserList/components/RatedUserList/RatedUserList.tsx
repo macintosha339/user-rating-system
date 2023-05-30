@@ -1,32 +1,34 @@
 import React from "react";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
-import RatingButtons from "../../../../components/RatingButtons/RatingButtons";
+import { useSelector } from "react-redux";
+import { List, Divider } from "@mui/material";
+import User from "../../../../interfaces/user";
+import { RootState } from "../../../../store/store";
+import { ItemsList } from "../../../../components/ItemsList/ItemsList";
+import Title from "../../../../ui/Title";
 
-interface RatedUserListProps {
-  ratedUsers: RatedUser[];
+interface RatedUsersState {
+  positiveRatedUsers: User[];
+  negativeRatedUsers: User[];
 }
 
-interface RatedUser {
-  id: number;
-  name: string;
-  rating: number;
-}
+export const RatedUserList: React.FC = () => {
+  const ratedUsers: RatedUsersState = useSelector(
+    (state: RootState) => state.ratedUsers
+  );
 
-export const RatedUserList: React.FC<RatedUserListProps> = ({ ratedUsers }) => {
+  const positiveUsers = ratedUsers.positiveRatedUsers;
+  const negativeUsers = ratedUsers.negativeRatedUsers;
+
   return (
     <div>
-      <Typography variant="h2">Rated User List</Typography>
+      <Title level="h2" text="Positive Users" />
       <List>
-        {ratedUsers.map((user) => (
-        <>
-          <ListItem key={user.id}>
-            <ListItemText
-              primary={`${user.name} (Rating: ${user.rating})`}
-            />
-          </ListItem>
-          <RatingButtons onIncrement={() => {}} onDecrement={() => {}}/>
-        </>
-        ))}
+        <ItemsList showRating={true} users={positiveUsers} itemClassName="rated-user-list__item" />
+      </List>
+      <Divider />
+      <Title level="h2" text="Negative Users" />
+      <List>
+        <ItemsList showRating={true} users={negativeUsers} itemClassName="rated-user-list__item" />
       </List>
     </div>
   );

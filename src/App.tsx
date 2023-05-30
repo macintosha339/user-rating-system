@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <UserList />
-      <RatedUserList ratedUsers={[]}/>
+      <RatedUserList />
     </div>
   );
 }
