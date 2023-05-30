@@ -9,11 +9,13 @@ export const useRateUser = () => {
   const incrementRatingUser = (user: User): void => {
     dispatch(removeUser(user.id));
     dispatch(incrementRating(user));
+    console.log(incrementRating(user).type);
   };
 
   const decrementRatingUser = (user: User): void => {
     dispatch(removeUser(user.id));
     dispatch(decrementRating(user));
+    console.log(decrementRating(user).type);
   };
 
   return { incrementRatingUser, decrementRatingUser };

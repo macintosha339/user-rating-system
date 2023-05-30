@@ -15,6 +15,7 @@ export const useAction = ({ action }: UseActionOptions) => {
     try {
         const data = await fetchUsers();
         dispatch(action(data));
+        console.log(action(data).type);
       } catch (error) {
         console.log(ERROR, error);
       }

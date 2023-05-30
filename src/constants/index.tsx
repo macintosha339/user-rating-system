@@ -10,3 +10,4 @@ export const YES: string = 'Да';
 export const EMPTY_USER_LIST: string = 'Список пользователей пуст.';
 export const RATE: string = 'Балл: ';
 export const DELETE: string = 'Удалить';
+export const CANCEL_DELETE: string = 'CANCEL DELETE';

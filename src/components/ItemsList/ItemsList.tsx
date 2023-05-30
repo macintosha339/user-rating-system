@@ -6,7 +6,7 @@ import ItemText from "../../ui/ItemText";
 import { useRateUser } from "../../hooks/useRateUser";
 import { useRemoveFromRatedToUserList } from "../../hooks/useRemoveUser";
 import { Modal } from "../Modal/Modal";
-import { EMPTY_USER_LIST, RATE, DELETE } from "../../constants";
+import { EMPTY_USER_LIST, RATE, DELETE, CANCEL_DELETE } from "../../constants";
 
 interface ItemsListProps {
   users: User[];
@@ -39,6 +39,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({
   };
 
   const handleCancelDelete = () => {
+    console.log(CANCEL_DELETE);
     setIsDialogOpen(false);
   };
   return (

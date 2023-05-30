@@ -9,6 +9,7 @@ export const useRemoveFromRatedToUserList = () => {
   const deleteUser = (user: User): void => {
     dispatch(removeRatedUser(user.id));
     dispatch(loadMoreUsers([user]));
+    console.log(removeRatedUser(user.id).type);
   };
 
   return deleteUser;
